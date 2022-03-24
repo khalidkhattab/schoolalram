@@ -144,23 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
             );
           }
         }
-        // if (currentTime ==
-        //     DateFormat('HH:mm:ss')
-        //         .format(DateTime(DateTime.now().year, DateTime.now().month,
-        //             DateTime.now().day, selectedTime.hour, selectedTime.minute))
-        //         .toString()) {
-        //   // player.play('assets/sound.mp3');
-        //   ScaffoldMessenger.of(context).showSnackBar(
-        //     const SnackBar(
-        //       duration: Duration(seconds: 5),
-        //       content: SizedBox(
-        //           height: 200, child: Center(child: Text('انتهت الحصة'))),
-        //       behavior: SnackBarBehavior.floating,
-        //       margin: EdgeInsets.only(bottom: 300, left: 300, right: 300),
-        //     ),
-        //   );
-        //   dayEnd();
-        // }
+
       });
     });
 
