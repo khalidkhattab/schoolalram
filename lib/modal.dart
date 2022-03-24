@@ -56,7 +56,7 @@ List<SchoolTable> ourTable = [
   SchoolTable(day: 'Wednesday', classTitle: '12A4', teacher: 'Yossef', time: '08:30:00', image: 'yosef.jpeg', index: 1, rTime: 55),
   SchoolTable(day: 'Wednesday', classTitle: '11A4', teacher: 'Mohamed', time: '09:30:00', image: 'bloshy.jpg', index: 2,rTime: 55),
   SchoolTable(day: 'Wednesday', classTitle: 'Break', teacher: 'Break1', time: '10:25:00', image: 'break.jpg', index: 10,rTime: 25),
-  SchoolTable(day: 'Wednesday', classTitle: 'Empty', teacher: 'Ahmed', time: '20:22:50', image: 'noclass.png', index: 3,rTime: 55),
+  SchoolTable(day: 'Wednesday', classTitle: 'Empty', teacher: 'Empty', time: '20:22:50', image: 'noclass.png', index: 3,rTime: 55),
   SchoolTable(day: 'Wednesday', classTitle: 'Empty', teacher: 'Empty',  time: '11:50:00', image: 'noclass.png', index: 4,rTime: 55),
   SchoolTable(day: 'Wednesday', classTitle: 'Break', teacher: 'Break2',  time: '12:45:00', image: 'break.jpg', index: 10,rTime: 25),
   SchoolTable(day: 'Wednesday', classTitle: '12D4', teacher: 'Ahmed',  time: '13:10:00', image: 'atach.jpg', index: 5,rTime: 55),
