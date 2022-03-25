@@ -107,12 +107,12 @@ class _MyHomePageState extends State<MyHomePage> {
         if (currentDay != DateFormat('EEEE').format(DateTime.now())) {
           currentDay = DateFormat('EEEE').format(DateTime.now());
           dailyTable =
-              ourTable.where((element) => element.day == currentDay ).toList();
+              ourTable.where((element) => element.day == currentDay).toList();
         }
         for (var element in dailyTable) {
           if (element.time == currentTime) {
-            for(var name in teacherNameArabic){
-              if(element.teacher==name['english']){
+            for (var name in teacherNameArabic) {
+              if (element.teacher == name['english']) {
                 currentTeacher = name['arabic'].toString();
               }
             }
@@ -124,31 +124,37 @@ class _MyHomePageState extends State<MyHomePage> {
             activeColor = Colors.yellow;
             currentIndex = element.index;
             ScaffoldMessenger.of(context).showSnackBar(
-               SnackBar(
-                duration:const Duration(seconds: 10),
+              SnackBar(
+                duration: const Duration(seconds: 10),
                 content: Container(
                     decoration: const BoxDecoration(
                         gradient: LinearGradient(
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
-                          colors: [
-                            Colors.blue,
-                            Colors.tealAccent,
-                          ],
-                        )),
-                    height: 150, child: Center(child: Text('بداية الحصة', style: GoogleFonts.cairo(fontSize: 40),))),
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Colors.blue,
+                        Colors.tealAccent,
+                      ],
+                    )),
+                    height: 150,
+                    child: Center(
+                        child: Text(
+                      'بداية الحصة',
+                      style: GoogleFonts.cairo(fontSize: 40),
+                    ))),
                 behavior: SnackBarBehavior.floating,
-                margin:const EdgeInsets.only(bottom: 300, left: 300, right: 300),
+                margin:
+                    const EdgeInsets.only(bottom: 300, left: 300, right: 300),
               ),
             );
           }
         }
-
       });
     });
 
-    dailyTable =
-        ourTable.where((element) => element.day == currentDay ).toList();//&& element.index!=0
+    dailyTable = ourTable
+        .where((element) => element.day == currentDay)
+        .toList(); //&& element.index!=0
     getTablePerDay();
     super.initState();
   }
@@ -189,15 +195,22 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void getTablePerDay() {
-    sundayTable = ourTable.where((element) => element.day.toUpperCase() == "SUNDAY").toList();
+    sundayTable = ourTable
+        .where((element) => element.day.toUpperCase() == "SUNDAY")
+        .toList();
     //sundayTable = ourTable.where((element) => (element.day.toUpperCase() == "SUNDAY" && element.index!=4 && element.index!=7)).toList();
-    mondayTable = ourTable.where((element) => element.day.toUpperCase()  == "MONDAY").toList();
-    tuesdayTable =
-        ourTable.where((element) => element.day.toUpperCase() == "TUESDAY").toList();
-    wednesdayTable =
-        ourTable.where((element) => element.day.toUpperCase() == "WEDNESDAY").toList();
-    thursdayTable =
-        ourTable.where((element) => element.day.toUpperCase() == "THURSDAY").toList();
+    mondayTable = ourTable
+        .where((element) => element.day.toUpperCase() == "MONDAY")
+        .toList();
+    tuesdayTable = ourTable
+        .where((element) => element.day.toUpperCase() == "TUESDAY")
+        .toList();
+    wednesdayTable = ourTable
+        .where((element) => element.day.toUpperCase() == "WEDNESDAY")
+        .toList();
+    thursdayTable = ourTable
+        .where((element) => element.day.toUpperCase() == "THURSDAY")
+        .toList();
   }
 
   @override
@@ -216,7 +229,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 showDialog(
                     context: context,
                     builder: (context) {
-                      return StatefulBuilder(builder: (context , setStat){
+                      return StatefulBuilder(builder: (context, setStat) {
                         return AlertDialog(
                           elevation: 10,
                           title: const Text('جدول القسم'),
@@ -237,16 +250,19 @@ class _MyHomePageState extends State<MyHomePage> {
                                             setStat(() {
                                               currentMainTableTeacher =
                                                   teacherNameArabic[index]
-                                                  ['english']
+                                                          ['english']
                                                       .toString();
                                             });
                                           },
-                                          color:currentMainTableTeacher==teacherNameArabic[index]
-                                          ['english'] ?Colors.yellow:Colors.teal,
+                                          color: currentMainTableTeacher ==
+                                                  teacherNameArabic[index]
+                                                      ['english']
+                                              ? Colors.yellow
+                                              : Colors.teal,
                                           height: 30,
                                           minWidth: 100,
                                           child: Text(teacherNameArabic[index]
-                                          ['arabic']
+                                                  ['arabic']
                                               .toString()),
                                         ),
                                       );
@@ -254,7 +270,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               Flexible(
                                 child: Container(
-                                  width: kWidth*.8,
+                                  width: kWidth * .8,
                                   height: kHeight * .8,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
@@ -327,7 +343,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              kWidth > 600
+              kWidth > 760
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -355,7 +371,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     currentTime,
                                     style: GoogleFonts.abel(
                                         fontSize:
-                                            kWidth > 1200 ? 120 : (kWidth / 12),
+                                            80,
                                         color: Colors.indigo),
                                   ),
                                 ],
@@ -368,11 +384,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           Text('قسم ',
                               style: GoogleFonts.changa(
                                   fontSize:
-                                      kWidth > 1200 ? 25 : (kWidth / 30))),
+                                      25)),
                           Text('الحاسوب',
                               style: GoogleFonts.changa(
                                   fontSize:
-                                      kWidth > 1200 ? 28 : (kWidth / 25))),
+                                      25)),
                         )
                       ],
                     )
@@ -488,7 +504,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               children: [
                                 Text(
                                   countMinutes.toString(),
-                                  style: const TextStyle(fontSize:80),
+                                  style: const TextStyle(fontSize: 80),
                                 ),
                                 const Text(
                                   ':',
@@ -737,69 +753,75 @@ Widget tableContainer(
         //physics: const ScrollPhysics(),
         itemCount: table.length,
         itemBuilder: (context, index) {
-          return ( index!=4 && index !=7)? Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            child: SizedBox(
-              height: 80,
-              width: 120,
-              child:Card(
-                elevation: 7,
-                child: Container(
-                    decoration: BoxDecoration(
-                        color: table[index].teacher == "Empty"
-                            ? Colors.yellowAccent
-                            : currentTeacher == table[index].teacher
-                                ? Colors.cyanAccent
-                                : null,
-                        borderRadius: BorderRadius.circular(10)),
+          return (index != 4 && index != 7)
+              ? Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                  child: SizedBox(
+                    height: 80,
                     width: 120,
-                    child: Row(
-                      children: [
-                        Container(
-                            width: 20,
-                            height: double.infinity,
-                            color:
-                                index != 0 ? Colors.orangeAccent : Colors.blue,
-                            child: (index != 0)
-                                ? Text(
-                                    (table[index].index+1).toString(),
-                                    style: const TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
-                                  )
-                                : null),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Column(
-                          mainAxisAlignment: index == 0
-                              ? MainAxisAlignment.center
-                              : MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              index == 0
-                                  ? table[index].day
-                                  : table[index].classTitle,
-                              style: GoogleFonts.oswald(
-                                fontSize: 18,
+                    child: Card(
+                      elevation: 7,
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: table[index].teacher == "Empty"
+                                  ? Colors.yellowAccent
+                                  : currentTeacher == table[index].teacher
+                                      ? Colors.cyanAccent
+                                      : null,
+                              borderRadius: BorderRadius.circular(10)),
+                          width: 120,
+                          child: Row(
+                            children: [
+                              Container(
+                                  width: 20,
+                                  height: double.infinity,
+                                  color: index != 0
+                                      ? Colors.orangeAccent
+                                      : Colors.blue,
+                                  child: (index != 0)
+                                      ? Text(
+                                          (table[index].index + 1).toString(),
+                                          style: const TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold),
+                                        )
+                                      : null),
+                              const SizedBox(
+                                width: 5,
                               ),
-                            ),
-                            Visibility(
-                              visible: index != 0,
-                              child: Text(
-                                table[index].teacher,
-                                style: GoogleFonts.oswald(
-                                  fontSize: 18,
-                                ),
+                              Column(
+                                mainAxisAlignment: index == 0
+                                    ? MainAxisAlignment.center
+                                    : MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    index == 0
+                                        ? table[index].day
+                                        : table[index].classTitle,
+                                    style: GoogleFonts.oswald(
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: index != 0,
+                                    child: Text(
+                                      table[index].teacher,
+                                      style: GoogleFonts.oswald(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    )),
-              ),
-            ),
-          ):const Divider(color: Colors.yellow,);
+                            ],
+                          )),
+                    ),
+                  ),
+                )
+              : const Divider(
+                  color: Colors.yellow,
+                );
         }),
   );
 }
