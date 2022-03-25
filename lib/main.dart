@@ -66,7 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
   TimeOfDay selectedTime = TimeOfDay.now();
 
   late List<SchoolTable> dailyTable;
-  // late SchoolTable currentClass;
+  // late  SchoolTable currentClass;
+
   late List<SchoolTable> sundayTable;
   late List<SchoolTable> mondayTable;
   late List<SchoolTable> thursdayTable;
