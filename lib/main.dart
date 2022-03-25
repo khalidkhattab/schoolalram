@@ -50,7 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
   int countMinutes = 4;
 
   //current data
-
   String currentTeacher = "no data";
   String currentClass = "no data";
   String currentImage = "khalid.jpg";
