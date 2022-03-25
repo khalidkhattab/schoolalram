@@ -439,7 +439,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     currentTime,
                                     style: GoogleFonts.alatsi(
                                         fontSize: kWidth > 1200
-                                            ? 120
+                                            ? 110
                                             : (kWidth / 12)),
                                   ),
                                 ],
