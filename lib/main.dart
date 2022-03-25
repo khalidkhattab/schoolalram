@@ -654,84 +654,162 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Row(
                 children: [
-                  Stack(
-                    alignment: Alignment.centerLeft,
-                    children: [
-                      Card(
-                        elevation: 10,
-                        child: Container(
-                          height: 250,
-                          width: kWidth / 2.5,
-                          decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            colors: [
-                              Colors.blue,
-                              Colors.tealAccent,
-                            ],
-                          )),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'الحصة التالية',
-                                  style: GoogleFonts.cairo(fontSize: 30),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 40, vertical: 15),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        dailyTable.length > currentIndex + 1
-                                            ? dailyTable[currentIndex + 1]
-                                                .teacher
-                                            : "finish",
-                                        style: GoogleFonts.cairo(fontSize: 30),
-                                      ),
-                                      Text(
-                                        dailyTable.length > currentIndex + 1
-                                            ? dailyTable[currentIndex + 1]
-                                                .classTitle
-                                            : "انتهي الدوام",
-                                        style: GoogleFonts.cairo(fontSize: 30),
-                                      ),
+                  // Stack(
+                  //   alignment: Alignment.centerLeft,
+                  //   children: [
+                  //     Card(
+                  //       elevation: 10,
+                  //       child: Container(
+                  //         // height: 250,
+                  //         width: kWidth >750?500:400,
+                  //         decoration: const BoxDecoration(
+                  //             gradient: LinearGradient(
+                  //           begin: Alignment.topRight,
+                  //           end: Alignment.bottomLeft,
+                  //           colors: [
+                  //             Colors.blue,
+                  //             Colors.tealAccent,
+                  //           ],
+                  //         )),
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.all(10.0),
+                  //           child: Column(
+                  //             crossAxisAlignment: CrossAxisAlignment.end,
+                  //             children: [
+                  //               Text(
+                  //                 'الحصة التالية',
+                  //                 style: GoogleFonts.cairo(fontSize: 30),
+                  //               ),
+                  //               Padding(
+                  //                 padding: const EdgeInsets.symmetric(
+                  //                     horizontal: 40, vertical: 15),
+                  //                 child: Column(
+                  //                   children: [
+                  //                     Text(
+                  //                       dailyTable.length > currentIndex + 1
+                  //                           ? dailyTable[currentIndex + 1]
+                  //                               .teacher
+                  //                           : "finish",
+                  //                       style: GoogleFonts.cairo(fontSize: 30),
+                  //                     ),
+                  //                     Text(
+                  //                       dailyTable.length > currentIndex + 1
+                  //                           ? dailyTable[currentIndex + 1]
+                  //                               .classTitle
+                  //                           : "انتهي الدوام",
+                  //                       style: GoogleFonts.cairo(fontSize: 30),
+                  //                     ),
+                  //                   ],
+                  //                 ),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       // margin:const  EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
+                  //     ),
+                  //     Card(
+                  //       child: Container(
+                  //         height:kWidth >750?300: 250,
+                  //         width: kWidth >750?200:100,
+                  //         decoration: BoxDecoration(
+                  //             borderRadius: BorderRadius.circular(15.0),
+                  //             image: DecorationImage(
+                  //                 fit: BoxFit.cover,
+                  //                 image: dailyTable.length > currentIndex + 1
+                  //                     ? AssetImage(
+                  //                         'images/${dailyTable[currentIndex + 1].image}')
+                  //                     : const AssetImage(
+                  //                         'images/checkbox.png'))),
+                  //         child: const Padding(
+                  //           padding: EdgeInsets.all(10.0),
+                  //         ),
+                  //       ),
+                  //       // margin:const  EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
+                  //     ),
+                  //     // const CircleAvatar(
+                  //     //   minRadius: 50,
+                  //     // ),
+                  //   ],
+                  // ),
+                  SizedBox(
+                    height: 300,
+                    child: Stack(
+                      alignment: Alignment.topCenter,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 50),
+                          child: Card(
+                            elevation: 10,
+                            child: Container(
+                              height: 250,
+                              width: kWidth >750?500:400,
+                              decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft,
+                                    colors: [
+                                      Colors.blue,
+                                      Colors.tealAccent,
                                     ],
-                                  ),
+                                  )),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      'الحصة التالية',
+                                      style: GoogleFonts.cairo(fontSize: 30),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 40, vertical: 15),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            dailyTable.length > currentIndex + 1
+                                                ? dailyTable[currentIndex + 1]
+                                                .teacher
+                                                : "finish",
+                                            style: GoogleFonts.cairo(fontSize: 30),
+                                          ),
+                                          Text(
+                                            dailyTable.length > currentIndex + 1
+                                                ? dailyTable[currentIndex + 1]
+                                                .classTitle
+                                                : "انتهي الدوام",
+                                            style: GoogleFonts.cairo(fontSize: 30),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
+                            // margin:const  EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
                           ),
                         ),
-                        // margin:const  EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
-                      ),
-                      Card(
-                        child: Container(
-                          height: 300,
-                          width: 150,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15.0),
-                              image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: dailyTable.length > currentIndex + 1
-                                      ? AssetImage(
-                                          'images/${dailyTable[currentIndex + 1].image}')
-                                      : const AssetImage(
-                                          'images/checkbox.png'))),
-                          child: const Padding(
-                            padding: EdgeInsets.all(10.0),
-                          ),
-                        ),
-                        // margin:const  EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
-                      ),
-                      // const CircleAvatar(
-                      //   minRadius: 50,
-                      // ),
-                    ],
-                  ),
+                          CircleAvatar(
+                          maxRadius: 70,
+                          backgroundColor: Colors.white,
+                          child:  Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CircleAvatar(
+                              maxRadius: 60,
+                              backgroundImage:  dailyTable.length > currentIndex + 1
+                                  ? AssetImage(
+                                  'images/${dailyTable[currentIndex + 1].image}', )
+                                  : const AssetImage(
+                                  'images/atach.jpg'),)),
+                          )
+
+
+
+                      ],
+                    ),
+                  )
                 ],
               ),
             ],
