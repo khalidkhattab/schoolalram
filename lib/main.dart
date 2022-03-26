@@ -611,8 +611,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       itemCount: dailyTable.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount:kWidth>1000? 8:4,
-                        crossAxisSpacing: 7,
-                        childAspectRatio: kWidth > 1000 ? 1.3 : 1,
+                        crossAxisSpacing: 5,
+                        childAspectRatio:kWidth>1000? 0.7:1.4,
                       ),
                       itemBuilder: (context, index) {
                         return SizedBox(
