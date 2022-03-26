@@ -610,9 +610,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       shrinkWrap: true,
                       itemCount: dailyTable.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 8,
+                        crossAxisCount:kWidth>1000? 8:4,
                         crossAxisSpacing: 7,
-                        childAspectRatio: kWidth > 1000 ? 1.3 : 0.8,
+                        childAspectRatio: kWidth > 1000 ? 1.3 : 1,
                       ),
                       itemBuilder: (context, index) {
                         return SizedBox(
@@ -636,9 +636,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                     dailyTable[index].teacher,
                                     style: GoogleFonts.oswald(fontSize: 25),
                                   ),
-                                  Text(
-                                    dailyTable[index].time,
-                                    style: GoogleFonts.oswald(fontSize: 25),
+                                  Flexible(
+                                    child: Text(
+                                      dailyTable[index].time,
+                                      style: GoogleFonts.oswald(fontSize:25),//fontSize: 25
+                                    ),
                                   ),
                                 ],
                               ),
@@ -653,7 +655,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 30,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+
                   // Stack(
                   //   alignment: Alignment.centerLeft,
                   //   children: [
@@ -758,14 +762,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
+                                    const SizedBox(height: 50,),
                                     Text(
-                                      'الحصة التالية',
+                                      'التالي',
                                       style: GoogleFonts.cairo(fontSize: 30),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 40, vertical: 15),
-                                      child: Column(
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             dailyTable.length > currentIndex + 1
@@ -793,7 +799,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                           CircleAvatar(
                           maxRadius: 70,
-                          backgroundColor: Colors.white,
+                          backgroundColor: Colors.teal,
                           child:  Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: CircleAvatar(
@@ -802,7 +808,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ? AssetImage(
                                   'images/${dailyTable[currentIndex + 1].image}', )
                                   : const AssetImage(
-                                  'images/atach.jpg'),)),
+                                  'images/abod.jpg'),)),
                           )
 
 
