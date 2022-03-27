@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   //current data
   String currentTeacher = "no data";
+  String arabicCurrentTeacher = "no data";
   String currentClass = "no data";
   String currentImage = "khalid.jpg";
   String teacherN = "khalid";
@@ -74,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   //list of class by arabic
   List<String> arabicClass = [
+    "بداية الدوام بعد",
     "الحصة الاولي",
     "الحصة الثانية",
     "الحصة الثالثة",
@@ -113,10 +115,10 @@ class _MyHomePageState extends State<MyHomePage> {
           if (element.time == currentTime) {
             for (var name in teacherNameArabic) {
               if (element.teacher == name['english']) {
-                currentTeacher = name['arabic'].toString();
+                arabicCurrentTeacher = name['arabic'].toString();
               }
             }
-
+            currentTeacher = element.teacher;
             currentClass = element.classTitle;
             currentImage = element.image;
             countMinutes = element.rTime;
@@ -161,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void classCountDown() {
     if (countMinutes == 0 && countSeconds == 0) {
-      countMinutes = 2;
+      countMinutes = 4;
       countSeconds = 59;
     } else {
       if (countSeconds == 0) {
@@ -231,6 +233,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     builder: (context) {
                       return StatefulBuilder(builder: (context, setStat) {
                         return AlertDialog(
+                          //scrollable: true,
+                          insetPadding: kWidth > 1300
+                              ? const EdgeInsets.symmetric(horizontal: 300)
+                              : const EdgeInsets.symmetric(horizontal: 10),
+                          actions: [
+                            MaterialButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text('Close'),
+                              color: Colors.red,
+                            )
+                          ],
                           elevation: 10,
                           title: const Text('جدول القسم'),
                           content: Column(
@@ -245,33 +260,36 @@ class _MyHomePageState extends State<MyHomePage> {
                                     itemBuilder: (context, index) {
                                       return Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: MaterialButton(
-                                          onPressed: () {
-                                            setStat(() {
-                                              currentMainTableTeacher =
-                                                  teacherNameArabic[index]
-                                                          ['english']
-                                                      .toString();
-                                            });
-                                          },
-                                          color: currentMainTableTeacher ==
-                                                  teacherNameArabic[index]
-                                                      ['english']
-                                              ? Colors.yellow
-                                              : Colors.teal,
-                                          height: 30,
-                                          minWidth: 100,
-                                          child: Text(teacherNameArabic[index]
-                                                  ['arabic']
-                                              .toString()),
+                                        child: Center(
+                                          child: MaterialButton(
+                                            onPressed: () {
+                                              setStat(() {
+                                                currentMainTableTeacher =
+                                                    teacherNameArabic[index]
+                                                            ['english']
+                                                        .toString();
+                                              });
+                                            },
+                                            color: currentMainTableTeacher ==
+                                                    teacherNameArabic[index]
+                                                        ['english']
+                                                ? Colors.yellow
+                                                : Colors.teal,
+                                            height: 30,
+                                            minWidth: 100,
+                                            child: Text(
+                                              teacherNameArabic[index]['arabic']
+                                                  .toString(),
+                                              style: GoogleFonts.cairo(),
+                                            ),
+                                          ),
                                         ),
                                       );
                                     }),
                               ),
                               Flexible(
                                 child: Container(
-                                  width: kWidth * .8,
-                                  height: kHeight * .8,
+                                  width: 1000,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     color: Colors.teal,
@@ -370,11 +388,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Text(
                                     currentTime,
                                     style: GoogleFonts.abel(
-                                        fontSize:
-                                            80,
+                                        fontSize: 80,
                                         color: Colors.indigo,
-                                    fontWeight: FontWeight.bold
-                                    ),
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
@@ -383,14 +399,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         partContainer(
                           kWidth,
-                          Text('قسم ',
-                              style: GoogleFonts.changa(
-                                  fontSize:
-                                      25)),
+                          Text('قسم ', style: GoogleFonts.changa(fontSize: 25)),
                           Text('الحاسوب',
-                              style: GoogleFonts.changa(
-                                  fontSize:
-                                      25)),
+                              style: GoogleFonts.changa(fontSize: 25)),
                         )
                       ],
                     )
@@ -456,11 +467,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Text(
                                     currentTime,
                                     style: GoogleFonts.alatsi(
-                                        fontSize: kWidth > 1200
-                                            ? 110
-                                            : (kWidth / 12),
-                                    fontWeight: FontWeight.bold
-                                    ),
+                                        fontSize:
+                                            kWidth > 1200 ? 110 : (kWidth / 12),
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
@@ -489,8 +498,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
-                                  currentTeacher,
-                                  style: GoogleFonts.oswald(fontSize: 30),
+                                  arabicCurrentTeacher,
+                                  style: GoogleFonts.cairo(fontSize: 25),
                                 ), //dailyTable[0].classTitle
                                 Text(currentClass,
                                     style: GoogleFonts.oswald(
@@ -554,9 +563,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                                             child: ListTile(
                                                               trailing:
                                                                   CircleAvatar(
-                                                                child: Text(
-                                                                    (index + 1)
-                                                                        .toString()),
+                                                                child: Text((selectedTeacher[
+                                                                            index]
+                                                                        .index)
+                                                                    .toString()),
                                                               ),
                                                               leading:
                                                                   Container(
@@ -614,20 +624,23 @@ class _MyHomePageState extends State<MyHomePage> {
                       shrinkWrap: true,
                       itemCount: dailyTable.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount:kWidth>1000? 8:4,
+                        crossAxisCount: kWidth > 1000 ? 8 : 4,
                         crossAxisSpacing: 5,
-                        childAspectRatio:kWidth>1000? 0.9:1.5,
+                        childAspectRatio: kWidth > 1000 ? 0.9 : 1.5,
                       ),
                       itemBuilder: (context, index) {
                         return SizedBox(
                           height: 200,
                           child: Card(
                             child: Container(
-                              color: dailyTable[index].index == currentIndex
-                                  ? Colors.yellow
-                                  : dailyTable[index].index > currentIndex
-                                      ? Colors.white
-                                      : Colors.deepOrange,
+                              color: dailyTable[index].index == 4 ||
+                                      dailyTable[index].index == 7
+                                  ? Colors.green
+                                  : dailyTable[index].index == currentIndex
+                                      ? Colors.yellow
+                                      : dailyTable[index].index > currentIndex
+                                          ? Colors.white
+                                          : Colors.deepOrange,
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
@@ -643,7 +656,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Flexible(
                                     child: Text(
                                       dailyTable[index].time,
-                                      style: GoogleFonts.oswald(fontSize:25),//fontSize: 25
+                                      style: GoogleFonts.oswald(
+                                          fontSize: 25), //fontSize: 25
                                     ),
                                   ),
                                 ],
@@ -661,7 +675,6 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-
                   // Stack(
                   //   alignment: Alignment.centerLeft,
                   //   children: [
@@ -751,22 +764,24 @@ class _MyHomePageState extends State<MyHomePage> {
                             elevation: 10,
                             child: Container(
                               height: 250,
-                              width: kWidth >750?500:400,
+                              width: kWidth > 750 ? 500 : 400,
                               decoration: const BoxDecoration(
                                   gradient: LinearGradient(
-                                    begin: Alignment.topRight,
-                                    end: Alignment.bottomLeft,
-                                    colors: [
-                                      Colors.blue,
-                                      Colors.tealAccent,
-                                    ],
-                                  )),
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft,
+                                colors: [
+                                  Colors.blue,
+                                  Colors.tealAccent,
+                                ],
+                              )),
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    const SizedBox(height: 50,),
+                                    const SizedBox(
+                                      height: 50,
+                                    ),
                                     Text(
                                       'التالي',
                                       style: GoogleFonts.cairo(fontSize: 30),
@@ -775,21 +790,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 40, vertical: 15),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             dailyTable.length > currentIndex + 1
-                                                ? dailyTable[currentIndex + 1]
-                                                .teacher
+                                                ? dailyTable[currentIndex]
+                                                    .teacher
                                                 : "finish",
-                                            style: GoogleFonts.cairo(fontSize: 30),
+                                            style:
+                                                GoogleFonts.cairo(fontSize: 30),
                                           ),
                                           Text(
                                             dailyTable.length > currentIndex + 1
-                                                ? dailyTable[currentIndex + 1]
-                                                .classTitle
+                                                ? dailyTable[currentIndex]
+                                                    .classTitle
                                                 : "انتهي الدوام",
-                                            style: GoogleFonts.cairo(fontSize: 30),
+                                            style:
+                                                GoogleFonts.cairo(fontSize: 30),
                                           ),
                                         ],
                                       ),
@@ -801,22 +819,21 @@ class _MyHomePageState extends State<MyHomePage> {
                             // margin:const  EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
                           ),
                         ),
-                          CircleAvatar(
+                        CircleAvatar(
                           maxRadius: 70,
                           backgroundColor: Colors.teal,
-                          child:  Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CircleAvatar(
-                              maxRadius: 60,
-                              backgroundImage:  dailyTable.length > currentIndex + 1
-                                  ? AssetImage(
-                                  'images/${dailyTable[currentIndex + 1].image}', )
-                                  : const AssetImage(
-                                  'images/abod.jpg'),)),
-                          )
-
-
-
+                          child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CircleAvatar(
+                                maxRadius: 60,
+                                backgroundImage: dailyTable.length >
+                                        currentIndex + 1
+                                    ? AssetImage(
+                                        'images/${dailyTable[currentIndex].image}',
+                                      )
+                                    : const AssetImage('images/checkbox.png'),
+                              )),
+                        )
                       ],
                     ),
                   )
@@ -855,7 +872,7 @@ Widget tableContainer(
                               color: table[index].teacher == "Empty"
                                   ? Colors.yellowAccent
                                   : currentTeacher == table[index].teacher
-                                      ? Colors.cyanAccent
+                                      ? Colors.red.shade200
                                       : null,
                               borderRadius: BorderRadius.circular(10)),
                           width: 120,
@@ -867,14 +884,33 @@ Widget tableContainer(
                                   color: index != 0
                                       ? Colors.orangeAccent
                                       : Colors.blue,
-                                  child: (index != 0)
+                                  child:index > 7
                                       ? Text(
-                                          (table[index].index + 1).toString(),
+                                    (table[index].index - 2)
+                                        .toString(),
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight:
+                                        FontWeight.bold),
+                                  ):index > 4
+                                      ? Text(
+                                    (table[index].index - 1)
+                                        .toString(),
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ):
+
+                                  (index != 0)
+                                      ? Text(
+                                          (table[index].index).toString(),
                                           style: const TextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
                                         )
-                                      : null),
+                                      : null
+
+                              ),
                               const SizedBox(
                                 width: 5,
                               ),
