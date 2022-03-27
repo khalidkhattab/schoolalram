@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -215,6 +216,13 @@ class _MyHomePageState extends State<MyHomePage> {
         .toList();
   }
 
+  int daysBetween(DateTime from, String startTime) {
+    var to = DateTime.parse(startTime);
+    from = DateTime(from.hour, from.minute, from.second);
+    to = DateTime(to.hour, to.minute, to.second);
+    return (from.difference(to).inHours).round();
+  }
+
   @override
   Widget build(BuildContext context) {
     double kWidth =
@@ -320,16 +328,26 @@ class _MyHomePageState extends State<MyHomePage> {
                     });
               },
               icon: const Icon(Icons.list)),
-          // IconButton(
-          //   onPressed: () {
-          //     // _timer.cancel();
-          //     //S
-          //     //  AudioPlayer().setAsset(alarmAudioPath);
-          //    // playeres.setAsset('assets/ring.wav');
-          //     // playeres.dispose();
-          //   },
-          //   icon: const FaIcon(FontAwesomeIcons.sun),
-          // ),
+          IconButton(
+            onPressed: () {
+              // _timer.cancel();
+              //S
+              //  AudioPlayer().setAsset(alarmAudioPath);
+             // playeres.setAsset('assets/ring.wav');
+              // playeres.dispose();
+              int x = daysBetween(DateTime.now(), '2022-03-27 24:30:00.000');
+              log(x.toString());
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text(x.toString()),
+                      content: Text(DateTime.now().toString()),
+                    );
+                  });
+            },
+            icon: const FaIcon(FontAwesomeIcons.sun),
+          ),
           const SizedBox(
             width: 20,
           ),
@@ -884,33 +902,31 @@ Widget tableContainer(
                                   color: index != 0
                                       ? Colors.orangeAccent
                                       : Colors.blue,
-                                  child:index > 7
+                                  child: index > 7
                                       ? Text(
-                                    (table[index].index - 2)
-                                        .toString(),
-                                    style: const TextStyle(
-                                        fontSize: 15,
-                                        fontWeight:
-                                        FontWeight.bold),
-                                  ):index > 4
-                                      ? Text(
-                                    (table[index].index - 1)
-                                        .toString(),
-                                    style: const TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
-                                  ):
-
-                                  (index != 0)
-                                      ? Text(
-                                          (table[index].index).toString(),
+                                          (table[index].index - 2).toString(),
                                           style: const TextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
                                         )
-                                      : null
-
-                              ),
+                                      : index > 4
+                                          ? Text(
+                                              (table[index].index - 1)
+                                                  .toString(),
+                                              style: const TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          : (index != 0)
+                                              ? Text(
+                                                  (table[index].index)
+                                                      .toString(),
+                                                  style: const TextStyle(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                )
+                                              : null),
                               const SizedBox(
                                 width: 5,
                               ),
