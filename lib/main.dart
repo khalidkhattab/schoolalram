@@ -372,7 +372,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                     style: GoogleFonts.abel(
                                         fontSize:
                                             80,
-                                        color: Colors.indigo),
+                                        color: Colors.indigo,
+                                    fontWeight: FontWeight.bold
+                                    ),
                                   ),
                                 ],
                               ),
@@ -456,7 +458,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                     style: GoogleFonts.alatsi(
                                         fontSize: kWidth > 1200
                                             ? 110
-                                            : (kWidth / 12)),
+                                            : (kWidth / 12),
+                                    fontWeight: FontWeight.bold
+                                    ),
                                   ),
                                 ],
                               ),
@@ -466,7 +470,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Card(
                 elevation: 4,
@@ -603,7 +607,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     )),
               ),
               const SizedBox(
-                height: 25,
+                height: 15,
               ),
               dailyTable.isNotEmpty
                   ? GridView.builder(
@@ -652,7 +656,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text('No class Today'),
                     ),
               const SizedBox(
-                height: 30,
+                height: 15,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -737,12 +741,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   //   ],
                   // ),
                   SizedBox(
-                    height: 300,
+                    height: 250,
                     child: Stack(
                       alignment: Alignment.topCenter,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 50),
+                          padding: const EdgeInsets.only(top: 30),
                           child: Card(
                             elevation: 10,
                             child: Container(
