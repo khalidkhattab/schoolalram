@@ -335,16 +335,16 @@ class _MyHomePageState extends State<MyHomePage> {
               //  AudioPlayer().setAsset(alarmAudioPath);
              // playeres.setAsset('assets/ring.wav');
               // playeres.dispose();
-              int x = daysBetween(DateTime.now(), '2022-03-27 24:30:00.000');
-              log(x.toString());
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text(x.toString()),
-                      content: Text(DateTime.now().toString()),
-                    );
-                  });
+              // int x = daysBetween(DateTime.now(), '2022-03-27 24:30:00.000');
+              // log(x.toString());
+              // showDialog(
+              //     context: context,
+              //     builder: (context) {
+              //       return AlertDialog(
+              //         title: Text(x.toString()),
+              //         content: Text(DateTime.now().toString()),
+              //       );
+              //     });
             },
             icon: const FaIcon(FontAwesomeIcons.sun),
           ),

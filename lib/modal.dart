@@ -32,7 +32,7 @@ List<SchoolTable> ourTable = [
   SchoolTable(day: 'Sunday', classTitle: '12D1', teacher: 'Ahmed',  time: '13:10:00', image: 'atach.jpg', index: 8,rTime: 55),
 
    SchoolTable(day: 'MONDAY', classTitle: '10-1', teacher: 'none', time: '14:12:00', image: 'atach.jpg', index: 0, rTime: 0),
-  SchoolTable(day: 'Monday', classTitle: '11A2', teacher: 'Mohamed', time: '07:30:00', image: 'bloshy.png', index: 1, rTime: 55),
+  SchoolTable(day: 'Monday', classTitle: '11A2', teacher: 'Mohamed', time: '07:30:00', image: 'bloshy.jpg', index: 1, rTime: 55),
   SchoolTable(day: 'Monday', classTitle: '10-3', teacher: 'Abdalaziz', time: '08:30:00', image: 'aziz.jpg', index: 2, rTime: 55),
   SchoolTable(day: 'Monday', classTitle: 'Empty', teacher: 'Empty', time: '09:30:00', image: 'noclass.png', index: 3,rTime: 55),
   SchoolTable(day: 'Monday', classTitle: 'Break', teacher: 'Break1', time: '10:25:00', image: 'break.jpg', index: 4,rTime: 25),
@@ -42,7 +42,7 @@ List<SchoolTable> ourTable = [
   SchoolTable(day: 'Monday', classTitle: '11D2', teacher: 'abdullah',  time: '13:10:00', image: 'abod.jpg', index: 8,rTime: 55),
 
    SchoolTable(day: 'TUESDAY', classTitle: '10-1', teacher: 'none', time: '14:12:00', image: 'atach.jpg', index: 0, rTime: 0),
-  SchoolTable(day: 'Tuesday', classTitle: '10-4', teacher: 'Mohamed', time: '07:30:00', image: 'bloshy.png', index: 1, rTime: 55),
+  SchoolTable(day: 'Tuesday', classTitle: '10-4', teacher: 'Mohamed', time: '07:30:00', image: 'bloshy.jpg', index: 1, rTime: 55),
   SchoolTable(day: 'Tuesday', classTitle: '11A3', teacher: 'Yossef', time: '08:30:00', image: 'yosef.jpeg', index: 2, rTime: 55),
   SchoolTable(day: 'Tuesday', classTitle: '12A3', teacher: 'Khalid', time: '09:30:00', image: 'khalid.jpg', index: 3,rTime: 55),
   SchoolTable(day: 'Tuesday', classTitle: 'Break', teacher: 'Break1', time: '10:25:00', image: 'break.jpg', index: 4,rTime: 25),
