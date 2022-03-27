@@ -302,16 +302,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     });
               },
               icon: const Icon(Icons.list)),
-          IconButton(
-            onPressed: () {
-              // _timer.cancel();
-              //S
-              //  AudioPlayer().setAsset(alarmAudioPath);
-              playeres.setAsset('assets/ring.wav');
-              // playeres.dispose();
-            },
-            icon: const FaIcon(FontAwesomeIcons.sun),
-          ),
+          // IconButton(
+          //   onPressed: () {
+          //     // _timer.cancel();
+          //     //S
+          //     //  AudioPlayer().setAsset(alarmAudioPath);
+          //    // playeres.setAsset('assets/ring.wav');
+          //     // playeres.dispose();
+          //   },
+          //   icon: const FaIcon(FontAwesomeIcons.sun),
+          // ),
           const SizedBox(
             width: 20,
           ),
@@ -329,7 +329,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
               });
             },
-            icon: const FaIcon(FontAwesomeIcons.list),
+            icon: const FaIcon(FontAwesomeIcons.clock),
           ),
           const SizedBox(
             width: 20,
@@ -612,7 +612,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount:kWidth>1000? 8:4,
                         crossAxisSpacing: 5,
-                        childAspectRatio:kWidth>1000? 0.7:1.4,
+                        childAspectRatio:kWidth>1000? 0.9:1.5,
                       ),
                       itemBuilder: (context, index) {
                         return SizedBox(
