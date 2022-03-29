@@ -41,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final playeres = AudioPlayer();
   late Timer _timer;
   String currentTime = "00:00:00";
+  bool isDone=false;
   // static AudioCache player = AudioCache();
   final alarmAudioPath = "assets/ring.wav";
   String currentDay = DateFormat('EEEE').format(DateTime.now());
@@ -105,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         classCountDown();
         startNewDay();
-
+        dayEnd();
         currentTime = DateFormat('HH:mm:ss').format(DateTime.now());
         // currentDay=DateFormat('EEEE').format(DateTime.now());
         if (currentDay != DateFormat('EEEE').format(DateTime.now())) {
@@ -177,17 +178,16 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  void startNewDay(){
-    if (currentTime == "07:48:00") {
-      currentIndex == 0;
-      Phoenix .rebirth(context) ;    }
+  void startNewDay() {
+    if (currentTime == "07:00:00") {
+      isDone = false;
+      Phoenix.rebirth(context);
+    }
   }
-  void dayEnd() {
-    if (currentTime == "18:16:30") {
-      currentIndex == 5;
-    } else {
 
-        currentIndex == 0;
+  void dayEnd() {
+    if (currentTime == "14:05:00") {
+      isDone = true;
     }
   }
 
@@ -338,7 +338,7 @@ class _MyHomePageState extends State<MyHomePage> {
               // _timer.cancel();
               //S
               //  AudioPlayer().setAsset(alarmAudioPath);
-             // playeres.setAsset('assets/ring.wav');
+              // playeres.setAsset('assets/ring.wav');
               // playeres.dispose();
               // int x = daysBetween(DateTime.now(), '2022-03-27 24:30:00.000');
               // log(x.toString());
@@ -656,14 +656,17 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: 200,
                           child: Card(
                             child: Container(
-                              color: dailyTable[index].index == 4 ||
-                                      dailyTable[index].index == 7
-                                  ? Colors.green
-                                  : dailyTable[index].index == currentIndex
-                                      ? Colors.yellow
-                                      : dailyTable[index].index > currentIndex
-                                          ? Colors.white
-                                          : Colors.deepOrange,
+                              color: isDone
+                                  ? Colors.deepOrange.shade200
+                                  : (dailyTable[index].index == 4 ||
+                                          dailyTable[index].index == 7)
+                                      ? Colors.green
+                                      : dailyTable[index].index == currentIndex
+                                          ? Colors.yellow
+                                          : dailyTable[index].index >
+                                                  currentIndex
+                                              ? Colors.white
+                                              : Colors.deepOrange,
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
