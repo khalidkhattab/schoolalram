@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -9,7 +9,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:new_alarm/modal.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(Phoenix(child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -104,6 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       setState(() {
         classCountDown();
+        startNewDay();
 
         currentTime = DateFormat('HH:mm:ss').format(DateTime.now());
         // currentDay=DateFormat('EEEE').format(DateTime.now());
@@ -176,13 +177,17 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  void startNewDay(){
+    if (currentTime == "07:48:00") {
+      currentIndex == 0;
+      Phoenix .rebirth(context) ;    }
+  }
   void dayEnd() {
     if (currentTime == "18:16:30") {
       currentIndex == 5;
     } else {
-      if (currentTime == "07:00:00") {
+
         currentIndex == 0;
-      }
     }
   }
 
