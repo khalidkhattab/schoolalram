@@ -2,11 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:new_alarm/modal.dart';
+
 
 void main() {
   runApp(Phoenix(child: const MyApp()));
@@ -38,6 +39,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   // int _counter = 0;
+
+  // late final TabController _tabController;
+
   final playeres = AudioPlayer();
   late Timer _timer;
   String currentTime = "00:00:00";
@@ -96,6 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
     {'arabic': "يوسف القلاف", "english": "Yossef"},
     {'arabic': "عبدالعزيز القلاف", "english": "Abdalaziz"},
   ];
+
 
   //class Color in  dailyTable
 
@@ -161,6 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
         .where((element) => element.day == currentDay)
         .toList(); //&& element.index!=0
     getTablePerDay();
+
     super.initState();
   }
 
@@ -232,213 +238,364 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     double kWidth =
         MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.width;
-    double kHeight =
-        MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.height;
+    // double kHeight =
+    //     MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.height;
     return Scaffold(
       backgroundColor: Colors.teal,
-      appBar: AppBar(
-        backgroundColor: Colors.teal,
-        actions: [
-          IconButton(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return StatefulBuilder(builder: (context, setStat) {
-                        return AlertDialog(
-                          //scrollable: true,
-                          insetPadding: kWidth > 1300
-                              ? const EdgeInsets.symmetric(horizontal: 300)
-                              : const EdgeInsets.symmetric(horizontal: 10),
-                          actions: [
-                            MaterialButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text('Close'),
-                              color: Colors.red,
-                            )
-                          ],
-                          elevation: 10,
-                          title: const Text('جدول القسم'),
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(
-                                height: 50,
-                                width: kWidth * .8,
-                                child: ListView.builder(
-                                    itemCount: teacherNameArabic.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Center(
-                                          child: MaterialButton(
-                                            onPressed: () {
-                                              setStat(() {
-                                                currentMainTableTeacher =
-                                                    teacherNameArabic[index]
+      // appBar: AppBar(
+      //   backgroundColor: Colors.teal,
+      //   actions: [
+      //     IconButton(
+      //       onPressed: () {
+      //        // Phoenix.rebirth(context);
+      //       showDialog(context: context, builder: (context)=> AlertDialog(
+      //         title: const Text('Restart  App'),
+      //         content: const Text('Are you sure you want to restart the app?'),
+      //         actions: [
+      //           TextButton(onPressed: (){
+      //             Phoenix.rebirth(context);
+      //           }, child:const  Text('yes', style: TextStyle(color: Colors.green),)),
+      //           TextButton(onPressed: (){
+      //             Navigator.pop(context);
+      //           }, child:const  Text('No',style: TextStyle(color: Colors.red),)),
+      //
+      //         ],
+      //       ));
+      //       },
+      //       icon: const Icon(Icons.refresh),
+      //     ),
+      //     IconButton(
+      //         onPressed: () {
+      //           showDialog(
+      //               context: context,
+      //               builder: (context) {
+      //                 return StatefulBuilder(builder: (context, setStat) {
+      //                   return AlertDialog(
+      //                     //scrollable: true,
+      //                     insetPadding: kWidth > 1300
+      //                         ? const EdgeInsets.symmetric(horizontal: 300)
+      //                         : const EdgeInsets.symmetric(horizontal: 10),
+      //                     actions: [
+      //                       MaterialButton(
+      //                         onPressed: () {
+      //                           Navigator.pop(context);
+      //                         },
+      //                         child: const Text('Close'),
+      //                         color: Colors.red,
+      //                       )
+      //                     ],
+      //                     elevation: 10,
+      //                     title: const Text('جدول القسم'),
+      //                     content: Column(
+      //                       mainAxisSize: MainAxisSize.min,
+      //                       children: [
+      //                         SizedBox(
+      //                           height: 50,
+      //                           width: kWidth * .8,
+      //                           child: ListView.builder(
+      //                               itemCount: teacherNameArabic.length,
+      //                               scrollDirection: Axis.horizontal,
+      //                               itemBuilder: (context, index) {
+      //                                 return Padding(
+      //                                   padding: const EdgeInsets.all(8.0),
+      //                                   child: Center(
+      //                                     child: MaterialButton(
+      //                                       onPressed: () {
+      //                                         setStat(() {
+      //                                           currentMainTableTeacher =
+      //                                               teacherNameArabic[index]
+      //                                                       ['english']
+      //                                                   .toString();
+      //                                         });
+      //                                       },
+      //                                       color: currentMainTableTeacher ==
+      //                                               teacherNameArabic[index]
+      //                                                   ['english']
+      //                                           ? Colors.yellow
+      //                                           : Colors.teal,
+      //                                       height: 30,
+      //                                       minWidth: 100,
+      //                                       child: Text(
+      //                                         teacherNameArabic[index]['arabic']
+      //                                             .toString(),
+      //                                         style: GoogleFonts.cairo(),
+      //                                       ),
+      //                                     ),
+      //                                   ),
+      //                                 );
+      //                               }),
+      //                         ),
+      //                         Flexible(
+      //                           child: Container(
+      //                             width: 1000,
+      //                             decoration: BoxDecoration(
+      //                               borderRadius: BorderRadius.circular(10),
+      //                               color: Colors.teal,
+      //                             ),
+      //                             child: ListView(
+      //                               scrollDirection: Axis.vertical,
+      //                               shrinkWrap: true,
+      //                               //mainAxisSize: MainAxisSize.min,
+      //                               children: [
+      //                                 tableContainer(sundayTable, kWidth,
+      //                                     currentMainTableTeacher),
+      //                                 tableContainer(mondayTable, kWidth,
+      //                                     currentMainTableTeacher),
+      //                                 tableContainer(tuesdayTable, kWidth,
+      //                                     currentMainTableTeacher),
+      //                                 tableContainer(wednesdayTable, kWidth,
+      //                                     currentMainTableTeacher),
+      //                                 tableContainer(thursdayTable, kWidth,
+      //                                     currentMainTableTeacher),
+      //                               ],
+      //                             ),
+      //                           ),
+      //                         ),
+      //                       ],
+      //                     ),
+      //                   );
+      //                 });
+      //               });
+      //         },
+      //         icon: const Icon(Icons.list_alt_outlined)),
+      //     // IconButton(
+      //     //   onPressed: () {
+      //     //     // _timer.cancel();
+      //     //     //S
+      //     //     //  AudioPlayer().setAsset(alarmAudioPath);
+      //     //     // playeres.setAsset('assets/ring.wav');
+      //     //     // playeres.dispose();
+      //     //     // int x = daysBetween(DateTime.now(), '2022-03-27 24:30:00.000');
+      //     //     // log(x.toString());
+      //     //     // showDialog(
+      //     //     //     context: context,
+      //     //     //     builder: (context) {
+      //     //     //       return AlertDialog(
+      //     //     //         title: Text(x.toString()),
+      //     //     //         content: Text(DateTime.now().toString()),
+      //     //     //       );
+      //     //     //     });
+      //     //   },
+      //     //   icon: const FaIcon(FontAwesomeIcons.sun),
+      //     // ),
+      //     const SizedBox(
+      //       width: 20,
+      //     ),
+      //     IconButton(
+      //       onPressed: () {
+      //         showTimePicker(
+      //           context: context,
+      //           initialTime: selectedTime,
+      //           initialEntryMode: TimePickerEntryMode.dial,
+      //         ).then((value) {
+      //           if (value != null && value != selectedTime) {
+      //             setState(() {
+      //               selectedTime = value;
+      //             });
+      //           }
+      //         });
+      //       },
+      //       icon: const FaIcon(FontAwesomeIcons.clock),
+      //     ),
+      //     const SizedBox(
+      //       width: 20,
+      //     ),
+      //   ],
+      //   title: Text(widget.title),
+      // ),
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return [
+            SliverAppBar(
+              backgroundColor: Colors.teal,
+              elevation: 20,
+              title:const Text('School Alarm'),
+              actions: [
+                Card(
+                  child: IconButton(
+                    onPressed: () {
+                      // Phoenix.rebirth(context);
+                      showDialog(context: context, builder: (context)=> AlertDialog(
+                        title: const Text('Restart  App'),
+                        content: const Text('Are you sure you want to restart the app?'),
+                        actions: [
+                          TextButton(onPressed: (){
+                            Phoenix.rebirth(context);
+                          }, child:const  Text('yes', style: TextStyle(color: Colors.green),)),
+                          TextButton(onPressed: (){
+                            Navigator.pop(context);
+                          }, child:const  Text('No',style: TextStyle(color: Colors.red),)),
+
+                        ],
+                      ));
+                    },
+                    icon: const Icon(Icons.refresh, color: Colors.teal,),
+                  ),
+                ),
+                Card(
+                  child: IconButton(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return StatefulBuilder(builder: (context, setStat) {
+                                return AlertDialog(
+                                  //scrollable: true,
+                                  insetPadding: kWidth > 1300
+                                      ? const EdgeInsets.symmetric(horizontal: 300)
+                                      : const EdgeInsets.symmetric(horizontal: 10),
+                                  actions: [
+                                    MaterialButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('Close'),
+                                      color: Colors.red,
+                                    )
+                                  ],
+                                  elevation: 10,
+                                  title: const Text('جدول القسم'),
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      SizedBox(
+                                        height: 50,
+                                        width: kWidth * .8,
+                                        child: ListView.builder(
+                                            itemCount: teacherNameArabic.length,
+                                            scrollDirection: Axis.horizontal,
+                                            itemBuilder: (context, index) {
+                                              return Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Center(
+                                                  child: MaterialButton(
+                                                    onPressed: () {
+                                                      setStat(() {
+                                                        currentMainTableTeacher =
+                                                            teacherNameArabic[index]
                                                             ['english']
-                                                        .toString();
-                                              });
-                                            },
-                                            color: currentMainTableTeacher ==
-                                                    teacherNameArabic[index]
+                                                                .toString();
+                                                      });
+                                                    },
+                                                    color: currentMainTableTeacher ==
+                                                        teacherNameArabic[index]
                                                         ['english']
-                                                ? Colors.yellow
-                                                : Colors.teal,
-                                            height: 30,
-                                            minWidth: 100,
-                                            child: Text(
-                                              teacherNameArabic[index]['arabic']
-                                                  .toString(),
-                                              style: GoogleFonts.cairo(),
-                                            ),
+                                                        ? Colors.yellow
+                                                        : Colors.teal,
+                                                    height: 30,
+                                                    minWidth: 100,
+                                                    child: Text(
+                                                      teacherNameArabic[index]['arabic']
+                                                          .toString(),
+                                                      style: GoogleFonts.cairo(),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            }),
+                                      ),
+                                      Flexible(
+                                        child: Container(
+                                          width: 1000,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10),
+                                            color: Colors.teal,
+                                          ),
+                                          child: ListView(
+                                            scrollDirection: Axis.vertical,
+                                            shrinkWrap: true,
+                                            //mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              tableContainer(sundayTable, kWidth,
+                                                  currentMainTableTeacher),
+                                              tableContainer(mondayTable, kWidth,
+                                                  currentMainTableTeacher),
+                                              tableContainer(tuesdayTable, kWidth,
+                                                  currentMainTableTeacher),
+                                              tableContainer(wednesdayTable, kWidth,
+                                                  currentMainTableTeacher),
+                                              tableContainer(thursdayTable, kWidth,
+                                                  currentMainTableTeacher),
+                                            ],
                                           ),
                                         ),
-                                      );
-                                    }),
-                              ),
-                              Flexible(
-                                child: Container(
-                                  width: 1000,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.teal,
-                                  ),
-                                  child: ListView(
-                                    scrollDirection: Axis.vertical,
-                                    shrinkWrap: true,
-                                    //mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      tableContainer(sundayTable, kWidth,
-                                          currentMainTableTeacher),
-                                      tableContainer(mondayTable, kWidth,
-                                          currentMainTableTeacher),
-                                      tableContainer(tuesdayTable, kWidth,
-                                          currentMainTableTeacher),
-                                      tableContainer(wednesdayTable, kWidth,
-                                          currentMainTableTeacher),
-                                      tableContainer(thursdayTable, kWidth,
-                                          currentMainTableTeacher),
+                                      ),
                                     ],
                                   ),
-                                ),
+                                );
+                              });
+                            });
+                      },
+                      icon: const Icon(Icons.list_alt_outlined,color: Colors.teal,)),
+                ),
+              ],
+              floating: true,
+              forceElevated: innerBoxIsScrolled,
+            //
+            ),
+          ];
+    },
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                kWidth > 760
+                    ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    partContainer(
+                        kWidth,
+                        Text(
+                          DateFormat('EEEE').format(DateTime.now()),
+                          style: TextStyle(
+                              fontSize: kWidth > 1200 ? 40 : (kWidth / 30)),
+                        ),
+                        Text(
+                          DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                          style: TextStyle(
+                              fontSize: kWidth > 1200 ? 25 : (kWidth / 30)),
+                        )),
+                    Card(
+                      child: SizedBox(
+                        width: kWidth > 1200 ? 550 : (kWidth * .42),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                currentTime,
+                                style: GoogleFonts.abel(
+                                    fontSize: 80,
+                                    color: Colors.indigo,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
-                        );
-                      });
-                    });
-              },
-              icon: const Icon(Icons.list)),
-          IconButton(
-            onPressed: () {
-              // _timer.cancel();
-              //S
-              //  AudioPlayer().setAsset(alarmAudioPath);
-              // playeres.setAsset('assets/ring.wav');
-              // playeres.dispose();
-              // int x = daysBetween(DateTime.now(), '2022-03-27 24:30:00.000');
-              // log(x.toString());
-              // showDialog(
-              //     context: context,
-              //     builder: (context) {
-              //       return AlertDialog(
-              //         title: Text(x.toString()),
-              //         content: Text(DateTime.now().toString()),
-              //       );
-              //     });
-            },
-            icon: const FaIcon(FontAwesomeIcons.sun),
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-          IconButton(
-            onPressed: () {
-              showTimePicker(
-                context: context,
-                initialTime: selectedTime,
-                initialEntryMode: TimePickerEntryMode.dial,
-              ).then((value) {
-                if (value != null && value != selectedTime) {
-                  setState(() {
-                    selectedTime = value;
-                  });
-                }
-              });
-            },
-            icon: const FaIcon(FontAwesomeIcons.clock),
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-        ],
-        title: Text(widget.title),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              kWidth > 760
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        partContainer(
-                            kWidth,
-                            Text(
-                              DateFormat('EEEE').format(DateTime.now()),
-                              style: TextStyle(
-                                  fontSize: kWidth > 1200 ? 40 : (kWidth / 30)),
-                            ),
-                            Text(
-                              DateFormat('yyyy-MM-dd').format(DateTime.now()),
-                              style: TextStyle(
-                                  fontSize: kWidth > 1200 ? 25 : (kWidth / 30)),
-                            )),
-                        Card(
-                          child: SizedBox(
-                            width: kWidth > 1200 ? 550 : (kWidth * .42),
-                            child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    currentTime,
-                                    style: GoogleFonts.abel(
-                                        fontSize: 80,
-                                        color: Colors.indigo,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
                         ),
-                        partContainer(
-                          kWidth,
-                          Text('قسم ', style: GoogleFonts.changa(fontSize: 25)),
-                          Text('الحاسوب',
-                              style: GoogleFonts.changa(fontSize: 25)),
-                        )
-                      ],
+                      ),
+                    ),
+                    partContainer(
+                      kWidth,
+                      Text('قسم ', style: GoogleFonts.changa(fontSize: 25)),
+                      Text('الحاسوب',
+                          style: GoogleFonts.changa(fontSize: 25)),
                     )
-                  : Column(
+                  ],
+                )
+                    : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                                width: (kWidth * .4),
-                                height: 150,
-                                child: Card(
-                                    child: Column(
+                        SizedBox(
+                            width: (kWidth * .4),
+                            height: 150,
+                            child: Card(
+                                child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
@@ -460,415 +617,416 @@ class _MyHomePageState extends State<MyHomePage> {
                                     // DateFormat('yyyy-MM-dd')
                                   ],
                                 ))),
-                            SizedBox(
-                                width: (kWidth * 0.4),
-                                height: 150,
-                                child: Card(
-                                    child: Column(
+                        SizedBox(
+                            width: (kWidth * 0.4),
+                            height: 150,
+                            child: Card(
+                                child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text('قسم ',
                                         style:
-                                            GoogleFonts.changa(fontSize: 30)),
+                                        GoogleFonts.changa(fontSize: 30)),
                                     Text('الحاسوب',
                                         style:
-                                            GoogleFonts.changa(fontSize: 30)),
+                                        GoogleFonts.changa(fontSize: 30)),
 
                                     // DateFormat('yyyy-MM-dd')
                                   ],
                                 ))),
-                          ],
+                      ],
+                    ),
+                    Card(
+                      child: SizedBox(
+                        width: kWidth > 1200 ? 500 : (kWidth * .4),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                currentTime,
+                                style: GoogleFonts.alatsi(
+                                    fontSize:
+                                    kWidth > 1200 ? 110 : (kWidth / 12),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
                         ),
-                        Card(
-                          child: SizedBox(
-                            width: kWidth > 1200 ? 500 : (kWidth * .4),
-                            child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Row(
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Card(
+                  elevation: 4,
+                  child: Container(
+                      color: Colors.teal.shade200,
+                      width: double.infinity,
+                      height: 200,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                            height: double.infinity,
+                            width: kWidth / 5,
+                            child: Card(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(
+                                    arabicCurrentTeacher,
+                                    style: GoogleFonts.cairo(fontSize: 25),
+                                  ), //dailyTable[0].classTitle
+                                  Text(currentClass,
+                                      style: GoogleFonts.oswald(
+                                          fontSize: 30)), //dailyTable[0].teacher
+                                ],
+                              ),
+                            ),
+                          ),
+                          Column(
+                            children: [
+                              Text(arabicClass[currentIndex],
+                                  style: GoogleFonts.cairo(fontSize: 40)),
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    currentTime,
-                                    style: GoogleFonts.alatsi(
-                                        fontSize:
-                                            kWidth > 1200 ? 110 : (kWidth / 12),
-                                        fontWeight: FontWeight.bold),
+                                    countMinutes.toString(),
+                                    style: const TextStyle(fontSize: 80),
+                                  ),
+                                  const Text(
+                                    ':',
+                                    style: TextStyle(fontSize: 80),
+                                  ),
+                                  Text(
+                                    countSeconds.toString(),
+                                    style: const TextStyle(fontSize: 80),
                                   ),
                                 ],
                               ),
-                            ),
+                            ],
                           ),
-                        ),
-                      ],
+                          InkWell(
+                            onTap: () {
+                              teacherTable(currentTeacher)
+                                  .then((value) => showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                        title: Text(
+                                            'Teacher Table: $currentTeacher'),
+                                        content: selectedTeacher.isNotEmpty
+                                            ? Container(
+                                          color: Colors.teal.shade200,
+                                          width: 400,
+                                          child: ListView.builder(
+                                              shrinkWrap: true,
+                                              scrollDirection:
+                                              Axis.vertical,
+                                              itemCount: selectedTeacher
+                                                  .length,
+                                              itemBuilder:
+                                                  (context, index) {
+                                                return Padding(
+                                                  padding:
+                                                  const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal:
+                                                      10,
+                                                      vertical: 3),
+                                                  child: Card(
+                                                    child: ListTile(
+                                                      trailing:
+                                                      CircleAvatar(
+                                                        child: Text((selectedTeacher[
+                                                        index]
+                                                            .index)
+                                                            .toString()),
+                                                      ),
+                                                      leading:
+                                                      Container(
+                                                        color:
+                                                        Colors.teal,
+                                                        height: 80,
+                                                        width: 100,
+                                                        alignment:
+                                                        AlignmentDirectional
+                                                            .center,
+                                                        child: Text(
+                                                          selectedTeacher[
+                                                          index]
+                                                              .day,
+                                                          style: GoogleFonts.changa(
+                                                              color: Colors
+                                                                  .white,
+                                                              fontSize:
+                                                              18),
+                                                        ),
+                                                      ),
+                                                      title: Text(
+                                                          selectedTeacher[
+                                                          index]
+                                                              .classTitle),
+                                                    ),
+                                                  ),
+                                                );
+                                              }),
+                                        )
+                                            : const Text('No Table '));
+                                  }));
+                            },
+                            child: Card(
+                              elevation: 7,
+                              child: Container(
+                                width: kWidth / 5,
+                                height: double.infinity,
+                                decoration: BoxDecoration(
+                                    color: Colors.teal.shade200,
+                                    image: DecorationImage(
+                                        image: AssetImage('images/$currentImage'),
+                                        fit: BoxFit.scaleDown)),
+                              ),
+                            ),
+                          )
+                        ],
+                      )),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                dailyTable.isNotEmpty
+                    ? GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: dailyTable.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: kWidth > 1000 ? 8 : 4,
+                      crossAxisSpacing: 5,
+                      childAspectRatio: kWidth > 1000 ? 0.9 : 1.5,
                     ),
-              const SizedBox(
-                height: 10,
-              ),
-              Card(
-                elevation: 4,
-                child: Container(
-                    color: Colors.teal.shade200,
-                    width: double.infinity,
-                    height: 200,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
-                          height: double.infinity,
-                          width: kWidth / 5,
-                          child: Card(
+                    itemBuilder: (context, index) {
+                      return SizedBox(
+                        height: 200,
+                        child: Card(
+                          child: Container(
+                            color: isDone
+                                ? Colors.deepOrange.shade200
+                                : (dailyTable[index].index == 4 ||
+                                dailyTable[index].index == 7)
+                                ? Colors.green
+                                : dailyTable[index].index == currentIndex
+                                ? Colors.yellow
+                                : dailyTable[index].index >
+                                currentIndex
+                                ? Colors.white
+                                : Colors.deepOrange,
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceAround,
                               children: [
                                 Text(
-                                  arabicCurrentTeacher,
-                                  style: GoogleFonts.cairo(fontSize: 25),
-                                ), //dailyTable[0].classTitle
-                                Text(currentClass,
+                                  dailyTable[index].classTitle,
+                                  style: GoogleFonts.oswald(fontSize: 25),
+                                ),
+                                Text(
+                                  dailyTable[index].teacher,
+                                  style: GoogleFonts.oswald(fontSize: 25),
+                                ),
+                                Flexible(
+                                  child: Text(
+                                    dailyTable[index].time,
                                     style: GoogleFonts.oswald(
-                                        fontSize: 30)), //dailyTable[0].teacher
+                                        fontSize: 25), //fontSize: 25
+                                  ),
+                                ),
                               ],
                             ),
                           ),
                         ),
-                        Column(
-                          children: [
-                            Text(arabicClass[currentIndex],
-                                style: GoogleFonts.cairo(fontSize: 40)),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  countMinutes.toString(),
-                                  style: const TextStyle(fontSize: 80),
-                                ),
-                                const Text(
-                                  ':',
-                                  style: TextStyle(fontSize: 80),
-                                ),
-                                Text(
-                                  countSeconds.toString(),
-                                  style: const TextStyle(fontSize: 80),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        InkWell(
-                          onTap: () {
-                            teacherTable(currentTeacher)
-                                .then((value) => showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return AlertDialog(
-                                          title: Text(
-                                              'Teacher Table: $currentTeacher'),
-                                          content: selectedTeacher.isNotEmpty
-                                              ? Container(
-                                                  color: Colors.teal.shade200,
-                                                  width: 400,
-                                                  child: ListView.builder(
-                                                      shrinkWrap: true,
-                                                      scrollDirection:
-                                                          Axis.vertical,
-                                                      itemCount: selectedTeacher
-                                                          .length,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        return Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  horizontal:
-                                                                      10,
-                                                                  vertical: 3),
-                                                          child: Card(
-                                                            child: ListTile(
-                                                              trailing:
-                                                                  CircleAvatar(
-                                                                child: Text((selectedTeacher[
-                                                                            index]
-                                                                        .index)
-                                                                    .toString()),
-                                                              ),
-                                                              leading:
-                                                                  Container(
-                                                                color:
-                                                                    Colors.teal,
-                                                                height: 80,
-                                                                width: 100,
-                                                                alignment:
-                                                                    AlignmentDirectional
-                                                                        .center,
-                                                                child: Text(
-                                                                  selectedTeacher[
-                                                                          index]
-                                                                      .day,
-                                                                  style: GoogleFonts.changa(
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontSize:
-                                                                          18),
-                                                                ),
-                                                              ),
-                                                              title: Text(
-                                                                  selectedTeacher[
-                                                                          index]
-                                                                      .classTitle),
-                                                            ),
-                                                          ),
-                                                        );
-                                                      }),
-                                                )
-                                              : const Text('No Table '));
-                                    }));
-                          },
-                          child: Card(
-                            elevation: 7,
-                            child: Container(
-                              width: kWidth / 5,
-                              height: double.infinity,
-                              decoration: BoxDecoration(
-                                  color: Colors.teal.shade200,
-                                  image: DecorationImage(
-                                      image: AssetImage('images/$currentImage'),
-                                      fit: BoxFit.scaleDown)),
-                            ),
-                          ),
-                        )
-                      ],
-                    )),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              dailyTable.isNotEmpty
-                  ? GridView.builder(
-                      shrinkWrap: true,
-                      itemCount: dailyTable.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: kWidth > 1000 ? 8 : 4,
-                        crossAxisSpacing: 5,
-                        childAspectRatio: kWidth > 1000 ? 0.9 : 1.5,
-                      ),
-                      itemBuilder: (context, index) {
-                        return SizedBox(
-                          height: 200,
-                          child: Card(
-                            child: Container(
-                              color: isDone
-                                  ? Colors.deepOrange.shade200
-                                  : (dailyTable[index].index == 4 ||
-                                          dailyTable[index].index == 7)
-                                      ? Colors.green
-                                      : dailyTable[index].index == currentIndex
-                                          ? Colors.yellow
-                                          : dailyTable[index].index >
-                                                  currentIndex
-                                              ? Colors.white
-                                              : Colors.deepOrange,
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(
-                                    dailyTable[index].classTitle,
-                                    style: GoogleFonts.oswald(fontSize: 25),
-                                  ),
-                                  Text(
-                                    dailyTable[index].teacher,
-                                    style: GoogleFonts.oswald(fontSize: 25),
-                                  ),
-                                  Flexible(
-                                    child: Text(
-                                      dailyTable[index].time,
-                                      style: GoogleFonts.oswald(
-                                          fontSize: 25), //fontSize: 25
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      })
-                  : const Center(
-                      child: Text('No class Today'),
-                    ),
-              const SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Stack(
-                  //   alignment: Alignment.centerLeft,
-                  //   children: [
-                  //     Card(
-                  //       elevation: 10,
-                  //       child: Container(
-                  //         // height: 250,
-                  //         width: kWidth >750?500:400,
-                  //         decoration: const BoxDecoration(
-                  //             gradient: LinearGradient(
-                  //           begin: Alignment.topRight,
-                  //           end: Alignment.bottomLeft,
-                  //           colors: [
-                  //             Colors.blue,
-                  //             Colors.tealAccent,
-                  //           ],
-                  //         )),
-                  //         child: Padding(
-                  //           padding: const EdgeInsets.all(10.0),
-                  //           child: Column(
-                  //             crossAxisAlignment: CrossAxisAlignment.end,
-                  //             children: [
-                  //               Text(
-                  //                 'الحصة التالية',
-                  //                 style: GoogleFonts.cairo(fontSize: 30),
-                  //               ),
-                  //               Padding(
-                  //                 padding: const EdgeInsets.symmetric(
-                  //                     horizontal: 40, vertical: 15),
-                  //                 child: Column(
-                  //                   children: [
-                  //                     Text(
-                  //                       dailyTable.length > currentIndex + 1
-                  //                           ? dailyTable[currentIndex + 1]
-                  //                               .teacher
-                  //                           : "finish",
-                  //                       style: GoogleFonts.cairo(fontSize: 30),
-                  //                     ),
-                  //                     Text(
-                  //                       dailyTable.length > currentIndex + 1
-                  //                           ? dailyTable[currentIndex + 1]
-                  //                               .classTitle
-                  //                           : "انتهي الدوام",
-                  //                       style: GoogleFonts.cairo(fontSize: 30),
-                  //                     ),
-                  //                   ],
-                  //                 ),
-                  //               ),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       ),
-                  //       // margin:const  EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
-                  //     ),
-                  //     Card(
-                  //       child: Container(
-                  //         height:kWidth >750?300: 250,
-                  //         width: kWidth >750?200:100,
-                  //         decoration: BoxDecoration(
-                  //             borderRadius: BorderRadius.circular(15.0),
-                  //             image: DecorationImage(
-                  //                 fit: BoxFit.cover,
-                  //                 image: dailyTable.length > currentIndex + 1
-                  //                     ? AssetImage(
-                  //                         'images/${dailyTable[currentIndex + 1].image}')
-                  //                     : const AssetImage(
-                  //                         'images/checkbox.png'))),
-                  //         child: const Padding(
-                  //           padding: EdgeInsets.all(10.0),
-                  //         ),
-                  //       ),
-                  //       // margin:const  EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
-                  //     ),
-                  //     // const CircleAvatar(
-                  //     //   minRadius: 50,
-                  //     // ),
-                  //   ],
-                  // ),
-                  SizedBox(
-                    height: 250,
-                    child: Stack(
-                      alignment: Alignment.topCenter,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 30),
-                          child: Card(
-                            elevation: 10,
-                            child: Container(
-                              height: 250,
-                              width: kWidth > 750 ? 500 : 400,
-                              decoration: const BoxDecoration(
-                                  gradient: LinearGradient(
-                                begin: Alignment.topRight,
-                                end: Alignment.bottomLeft,
-                                colors: [
-                                  Colors.blue,
-                                  Colors.tealAccent,
-                                ],
-                              )),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    const SizedBox(
-                                      height: 50,
-                                    ),
-                                    Text(
-                                      'التالي',
-                                      style: GoogleFonts.cairo(fontSize: 30),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 40, vertical: 15),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            dailyTable.length > currentIndex + 1
-                                                ? dailyTable[currentIndex]
-                                                    .teacher
-                                                : "finish",
-                                            style:
-                                                GoogleFonts.cairo(fontSize: 30),
-                                          ),
-                                          Text(
-                                            dailyTable.length > currentIndex + 1
-                                                ? dailyTable[currentIndex]
-                                                    .classTitle
-                                                : "انتهي الدوام",
-                                            style:
-                                                GoogleFonts.cairo(fontSize: 30),
-                                          ),
-                                        ],
+                      );
+                    })
+                    : const Center(
+                  child: Text('No class Today'),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Stack(
+                    //   alignment: Alignment.centerLeft,
+                    //   children: [
+                    //     Card(
+                    //       elevation: 10,
+                    //       child: Container(
+                    //         // height: 250,
+                    //         width: kWidth >750?500:400,
+                    //         decoration: const BoxDecoration(
+                    //             gradient: LinearGradient(
+                    //           begin: Alignment.topRight,
+                    //           end: Alignment.bottomLeft,
+                    //           colors: [
+                    //             Colors.blue,
+                    //             Colors.tealAccent,
+                    //           ],
+                    //         )),
+                    //         child: Padding(
+                    //           padding: const EdgeInsets.all(10.0),
+                    //           child: Column(
+                    //             crossAxisAlignment: CrossAxisAlignment.end,
+                    //             children: [
+                    //               Text(
+                    //                 'الحصة التالية',
+                    //                 style: GoogleFonts.cairo(fontSize: 30),
+                    //               ),
+                    //               Padding(
+                    //                 padding: const EdgeInsets.symmetric(
+                    //                     horizontal: 40, vertical: 15),
+                    //                 child: Column(
+                    //                   children: [
+                    //                     Text(
+                    //                       dailyTable.length > currentIndex + 1
+                    //                           ? dailyTable[currentIndex + 1]
+                    //                               .teacher
+                    //                           : "finish",
+                    //                       style: GoogleFonts.cairo(fontSize: 30),
+                    //                     ),
+                    //                     Text(
+                    //                       dailyTable.length > currentIndex + 1
+                    //                           ? dailyTable[currentIndex + 1]
+                    //                               .classTitle
+                    //                           : "انتهي الدوام",
+                    //                       style: GoogleFonts.cairo(fontSize: 30),
+                    //                     ),
+                    //                   ],
+                    //                 ),
+                    //               ),
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       // margin:const  EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
+                    //     ),
+                    //     Card(
+                    //       child: Container(
+                    //         height:kWidth >750?300: 250,
+                    //         width: kWidth >750?200:100,
+                    //         decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(15.0),
+                    //             image: DecorationImage(
+                    //                 fit: BoxFit.cover,
+                    //                 image: dailyTable.length > currentIndex + 1
+                    //                     ? AssetImage(
+                    //                         'images/${dailyTable[currentIndex + 1].image}')
+                    //                     : const AssetImage(
+                    //                         'images/checkbox.png'))),
+                    //         child: const Padding(
+                    //           padding: EdgeInsets.all(10.0),
+                    //         ),
+                    //       ),
+                    //       // margin:const  EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
+                    //     ),
+                    //     // const CircleAvatar(
+                    //     //   minRadius: 50,
+                    //     // ),
+                    //   ],
+                    // ),
+                    SizedBox(
+                      height: 250,
+                      child: Stack(
+                        alignment: Alignment.topCenter,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 30),
+                            child: Card(
+                              elevation: 10,
+                              child: Container(
+                                height: 250,
+                                width: kWidth > 750 ? 500 : 400,
+                                decoration: const BoxDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topRight,
+                                      end: Alignment.bottomLeft,
+                                      colors: [
+                                        Colors.blue,
+                                        Colors.tealAccent,
+                                      ],
+                                    )),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      const SizedBox(
+                                        height: 50,
                                       ),
-                                    ),
-                                  ],
+                                      Text(
+                                        'التالي',
+                                        style: GoogleFonts.cairo(fontSize: 30),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 40, vertical: 15),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              dailyTable.length > currentIndex + 1
+                                                  ? dailyTable[currentIndex]
+                                                  .teacher
+                                                  : "finish",
+                                              style:
+                                              GoogleFonts.cairo(fontSize: 30),
+                                            ),
+                                            Text(
+                                              dailyTable.length > currentIndex + 1
+                                                  ? dailyTable[currentIndex]
+                                                  .classTitle
+                                                  : "انتهي الدوام",
+                                              style:
+                                              GoogleFonts.cairo(fontSize: 30),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
+                              // margin:const  EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
                             ),
-                            // margin:const  EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
                           ),
-                        ),
-                        CircleAvatar(
-                          maxRadius: 70,
-                          backgroundColor: Colors.teal,
-                          child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: CircleAvatar(
-                                maxRadius: 60,
-                                backgroundImage: dailyTable.length >
-                                        currentIndex + 1
-                                    ? AssetImage(
-                                        'images/${dailyTable[currentIndex].image}',
-                                      )
-                                    : const AssetImage('images/checkbox.png'),
-                              )),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ],
+                          CircleAvatar(
+                            maxRadius: 70,
+                            backgroundColor: Colors.teal,
+                            child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: CircleAvatar(
+                                  maxRadius: 60,
+                                  backgroundImage: dailyTable.length >
+                                      currentIndex + 1
+                                      ? AssetImage(
+                                    'images/${dailyTable[currentIndex].image}',
+                                  )
+                                      : const AssetImage('images/checkbox.png'),
+                                )),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
-      ),
+      )
     );
   }
 }
