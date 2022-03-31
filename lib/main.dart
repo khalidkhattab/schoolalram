@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String currentTeacher = "no data";
   String arabicCurrentTeacher = "no data";
   String currentClass = "no data";
-  String currentImage = "khalid.jpg";
+  String currentImage = "noclass.png";
   String teacherN = "khalid";
 
   //use to define color of class yellow or red or white
@@ -638,7 +638,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Card(
                       child: SizedBox(
-                        width: kWidth > 1200 ? 500 : (kWidth * .4),
+                        width: kWidth > 1200 ? 500:kWidth<400?(kWidth-100): (kWidth * .4),
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Row(
@@ -648,7 +648,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 currentTime,
                                 style: GoogleFonts.alatsi(
                                     fontSize:
-                                    kWidth > 1200 ? 110 : (kWidth / 12),
+                                    kWidth > 1200 ? 110 : (kWidth / 13),
                                     fontWeight: FontWeight.bold),
                               ),
                             ],
@@ -689,23 +689,24 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(arabicClass[currentIndex],
-                                  style: GoogleFonts.cairo(fontSize: 40)),
+                                  style: GoogleFonts.cairo(fontSize: kWidth<400?30: 40)),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     countMinutes.toString(),
-                                    style: const TextStyle(fontSize: 80),
+                                    style:  TextStyle(fontSize:kWidth<400?60: 80),
                                   ),
-                                  const Text(
+                                   Text(
                                     ':',
-                                    style: TextStyle(fontSize: 80),
+                                    style: TextStyle(fontSize:kWidth<400?60: 80),
                                   ),
                                   Text(
                                     countSeconds.toString(),
-                                    style: const TextStyle(fontSize: 80),
+                                    style:  TextStyle(fontSize:kWidth<400?60: 80),
                                   ),
                                 ],
                               ),
@@ -804,7 +805,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     shrinkWrap: true,
                     itemCount: dailyTable.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: kWidth > 1000 ? 8 : 4,
+                      crossAxisCount: kWidth > 1000 ? 8 : kWidth <400 ? 2 : 4,
                       crossAxisSpacing: 5,
                       childAspectRatio: kWidth > 1000 ? 0.9 : 1.5,
                     ),
@@ -853,7 +854,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('No class Today'),
                 ),
                 const SizedBox(
-                  height: 15,
+                  height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -947,7 +948,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               elevation: 10,
                               child: Container(
                                 height: 250,
-                                width: kWidth > 750 ? 500 : 400,
+                                width: kWidth > 750 ? 500 :kWidth<400?kWidth-50: 400,
                                 decoration: const BoxDecoration(
                                     gradient: LinearGradient(
                                       begin: Alignment.topRight,
