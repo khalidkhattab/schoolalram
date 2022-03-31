@@ -537,7 +537,7 @@ class _MyHomePageState extends State<MyHomePage> {
     },
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -666,136 +666,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Container(
                       color: Colors.teal.shade200,
                       width: double.infinity,
-                      height: 200,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            height: double.infinity,
-                            width: kWidth / 5,
-                            child: Card(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Text(
-                                    arabicCurrentTeacher,
-                                    style: GoogleFonts.cairo(fontSize: 25),
-                                  ), //dailyTable[0].classTitle
-                                  Text(currentClass,
-                                      style: GoogleFonts.oswald(
-                                          fontSize: 30)), //dailyTable[0].teacher
-                                ],
-                              ),
-                            ),
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(arabicClass[currentIndex],
-                                  style: GoogleFonts.cairo(fontSize: kWidth<400?30: 40)),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    countMinutes.toString(),
-                                    style:  TextStyle(fontSize:kWidth<400?60: 80),
-                                  ),
-                                   Text(
-                                    ':',
-                                    style: TextStyle(fontSize:kWidth<400?60: 80),
-                                  ),
-                                  Text(
-                                    countSeconds.toString(),
-                                    style:  TextStyle(fontSize:kWidth<400?60: 80),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          InkWell(
-                            onTap: () {
-                              teacherTable(currentTeacher)
-                                  .then((value) => showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                        title: Text(
-                                            'Teacher Table: $currentTeacher'),
-                                        content: selectedTeacher.isNotEmpty
-                                            ? Container(
-                                          color: Colors.teal.shade200,
-                                          width: 400,
-                                          child: ListView.builder(
-                                              shrinkWrap: true,
-                                              scrollDirection:
-                                              Axis.vertical,
-                                              itemCount: selectedTeacher
-                                                  .length,
-                                              itemBuilder:
-                                                  (context, index) {
-                                                return Padding(
-                                                  padding:
-                                                  const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal:
-                                                      10,
-                                                      vertical: 3),
-                                                  child: Card(
-                                                    child: ListTile(
-                                                      trailing:
-                                                      CircleAvatar(
-                                                        child: Text((selectedTeacher[
-                                                        index]
-                                                            .index)
-                                                            .toString()),
-                                                      ),
-                                                      leading:
-                                                      Container(
-                                                        color:
-                                                        Colors.teal,
-                                                        height: 80,
-                                                        width: 100,
-                                                        alignment:
-                                                        AlignmentDirectional
-                                                            .center,
-                                                        child: Text(
-                                                          selectedTeacher[
-                                                          index]
-                                                              .day,
-                                                          style: GoogleFonts.changa(
-                                                              color: Colors
-                                                                  .white,
-                                                              fontSize:
-                                                              18),
-                                                        ),
-                                                      ),
-                                                      title: Text(
-                                                          selectedTeacher[
-                                                          index]
-                                                              .classTitle),
-                                                    ),
-                                                  ),
-                                                );
-                                              }),
-                                        )
-                                            : const Text('No Table '));
-                                  }));
-                            },
-                            child: Card(
-                              elevation: 7,
-                              child: Container(
-                                width: kWidth / 5,
-                                height: double.infinity,
-                                decoration: BoxDecoration(
-                                    color: Colors.teal.shade200,
-                                    image: DecorationImage(
-                                        image: AssetImage('images/$currentImage'),
-                                        fit: BoxFit.scaleDown)),
-                              ),
-                            ),
-                          )
-                        ],
-                      )),
+                      height: kWidth<400?450:200,
+                      child: kWidth>400? mainRow(kWidth, context):mainColumn(kWidth, context)),
                 ),
                 const SizedBox(
                   height: 15,
@@ -1030,6 +902,270 @@ class _MyHomePageState extends State<MyHomePage> {
       )
     );
   }
+
+  Row mainRow(double kWidth, BuildContext context) {
+    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                          height: double.infinity,
+                          width: kWidth / 5,
+                          child: Card(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  arabicCurrentTeacher,
+                                  style: GoogleFonts.cairo(fontSize: 25),
+                                ), //dailyTable[0].classTitle
+                                Text(currentClass,
+                                    style: GoogleFonts.oswald(
+                                        fontSize: 30)), //dailyTable[0].teacher
+                              ],
+                            ),
+                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(arabicClass[currentIndex],
+                                style: GoogleFonts.cairo(fontSize: kWidth<400?30: 40)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  countMinutes.toString(),
+                                  style:  TextStyle(fontSize:kWidth<400?60: 80),
+                                ),
+                                 Text(
+                                  ':',
+                                  style: TextStyle(fontSize:kWidth<400?60: 80),
+                                ),
+                                Text(
+                                  countSeconds.toString(),
+                                  style:  TextStyle(fontSize:kWidth<400?60: 80),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        InkWell(
+                          onTap: () {
+                            teacherTable(currentTeacher)
+                                .then((value) => showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                      title: Text(
+                                          'Teacher Table: $currentTeacher'),
+                                      content: selectedTeacher.isNotEmpty
+                                          ? Container(
+                                        color: Colors.teal.shade200,
+                                        width: 400,
+                                        child: ListView.builder(
+                                            shrinkWrap: true,
+                                            scrollDirection:
+                                            Axis.vertical,
+                                            itemCount: selectedTeacher
+                                                .length,
+                                            itemBuilder:
+                                                (context, index) {
+                                              return Padding(
+                                                padding:
+                                                const EdgeInsets
+                                                    .symmetric(
+                                                    horizontal:
+                                                    10,
+                                                    vertical: 3),
+                                                child: Card(
+                                                  child: ListTile(
+                                                    trailing:
+                                                    CircleAvatar(
+                                                      child: Text((selectedTeacher[
+                                                      index]
+                                                          .index)
+                                                          .toString()),
+                                                    ),
+                                                    leading:
+                                                    Container(
+                                                      color:
+                                                      Colors.teal,
+                                                      height: 80,
+                                                      width: 100,
+                                                      alignment:
+                                                      AlignmentDirectional
+                                                          .center,
+                                                      child: Text(
+                                                        selectedTeacher[
+                                                        index]
+                                                            .day,
+                                                        style: GoogleFonts.changa(
+                                                            color: Colors
+                                                                .white,
+                                                            fontSize:
+                                                            18),
+                                                      ),
+                                                    ),
+                                                    title: Text(
+                                                        selectedTeacher[
+                                                        index]
+                                                            .classTitle),
+                                                  ),
+                                                ),
+                                              );
+                                            }),
+                                      )
+                                          : const Text('No Table '));
+                                }));
+                          },
+                          child: Card(
+                            elevation: 7,
+                            child: Container(
+                              width: kWidth / 5,
+                              height: double.infinity,
+                              decoration: BoxDecoration(
+                                  color: Colors.teal.shade200,
+                                  image: DecorationImage(
+                                      image: AssetImage('images/$currentImage'),
+                                      fit: BoxFit.scaleDown)),
+                            ),
+                          ),
+                        )
+                      ],
+                    );
+  }
+  Column mainColumn(double kWidth, BuildContext context) {
+    return Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                        // height: 250,
+                          width:double.infinity,
+                          child: Card(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  arabicCurrentTeacher,
+                                  style: GoogleFonts.cairo(fontSize: 25),
+                                ), //dailyTable[0].classTitle
+                                Text(currentClass,
+                                    style: GoogleFonts.oswald(
+                                        fontSize: 30)), //dailyTable[0].teacher
+                              ],
+                            ),
+                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(arabicClass[currentIndex],
+                                style: GoogleFonts.cairo(fontSize: kWidth<400?30: 40)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  countMinutes.toString(),
+                                  style:  TextStyle(fontSize:kWidth<400?60: 80),
+                                ),
+                                 Text(
+                                  ':',
+                                  style: TextStyle(fontSize:kWidth<400?60: 80),
+                                ),
+                                Text(
+                                  countSeconds.toString(),
+                                  style:  TextStyle(fontSize:kWidth<400?60: 80),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        InkWell(
+                          onTap: () {
+                            teacherTable(currentTeacher)
+                                .then((value) => showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                      title: Text(
+                                          'Teacher Table: $currentTeacher'),
+                                      content: selectedTeacher.isNotEmpty
+                                          ? Container(
+                                        color: Colors.teal.shade200,
+                                        width: double.infinity,
+                                        child: ListView.builder(
+                                            shrinkWrap: true,
+                                            scrollDirection:
+                                            Axis.vertical,
+                                            itemCount: selectedTeacher
+                                                .length,
+                                            itemBuilder:
+                                                (context, index) {
+                                              return Padding(
+                                                padding:
+                                                const EdgeInsets
+                                                    .symmetric(
+                                                    horizontal:
+                                                    10,
+                                                    vertical: 3),
+                                                child: Card(
+                                                  child: ListTile(
+                                                    trailing:
+                                                    CircleAvatar(
+                                                      child: Text((selectedTeacher[
+                                                      index]
+                                                          .index)
+                                                          .toString()),
+                                                    ),
+                                                    leading:
+                                                    Container(
+                                                      color:
+                                                      Colors.teal,
+                                                      height: 80,
+                                                      width: 100,
+                                                      alignment:
+                                                      AlignmentDirectional
+                                                          .center,
+                                                      child: Text(
+                                                        selectedTeacher[
+                                                        index]
+                                                            .day,
+                                                        style: GoogleFonts.changa(
+                                                            color: Colors
+                                                                .white,
+                                                            fontSize:
+                                                            18),
+                                                      ),
+                                                    ),
+                                                    title: Text(
+                                                        selectedTeacher[
+                                                        index]
+                                                            .classTitle),
+                                                  ),
+                                                ),
+                                              );
+                                            }),
+                                      )
+                                          : const Text('No Table '));
+                                }));
+                          },
+                          child: Card(
+                            elevation: 7,
+                            child: Container(
+                              width:double.infinity,
+                              height: 200,
+                              decoration: BoxDecoration(
+                                  color: Colors.teal.shade200,
+                                  image: DecorationImage(
+                                      image: AssetImage('images/$currentImage'),
+                                      fit: BoxFit.scaleDown)),
+                            ),
+                          ),
+                        )
+                      ],
+                    );
+  }
+
 }
 
 Widget tableContainer(
