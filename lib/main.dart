@@ -84,11 +84,12 @@ class _MyHomePageState extends State<MyHomePage> {
     "بداية الدوام بعد",
     "الحصة الاولي",
     "الحصة الثانية",
-    "الحصة الثالثة",
+    "اختبار قصير",
     "الفرصة الاولي",
+    "الحصة الثالثة",
     "الحصة الرابعة",
-    "الحصة الخامسة",
     "الفرصة الثانية",
+    "الحصة الخامسة",
     "الحصة السادسة",
   ];
 
@@ -242,167 +243,7 @@ class _MyHomePageState extends State<MyHomePage> {
     //     MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.height;
     return Scaffold(
       backgroundColor: Colors.teal,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.teal,
-      //   actions: [
-      //     IconButton(
-      //       onPressed: () {
-      //        // Phoenix.rebirth(context);
-      //       showDialog(context: context, builder: (context)=> AlertDialog(
-      //         title: const Text('Restart  App'),
-      //         content: const Text('Are you sure you want to restart the app?'),
-      //         actions: [
-      //           TextButton(onPressed: (){
-      //             Phoenix.rebirth(context);
-      //           }, child:const  Text('yes', style: TextStyle(color: Colors.green),)),
-      //           TextButton(onPressed: (){
-      //             Navigator.pop(context);
-      //           }, child:const  Text('No',style: TextStyle(color: Colors.red),)),
-      //
-      //         ],
-      //       ));
-      //       },
-      //       icon: const Icon(Icons.refresh),
-      //     ),
-      //     IconButton(
-      //         onPressed: () {
-      //           showDialog(
-      //               context: context,
-      //               builder: (context) {
-      //                 return StatefulBuilder(builder: (context, setStat) {
-      //                   return AlertDialog(
-      //                     //scrollable: true,
-      //                     insetPadding: kWidth > 1300
-      //                         ? const EdgeInsets.symmetric(horizontal: 300)
-      //                         : const EdgeInsets.symmetric(horizontal: 10),
-      //                     actions: [
-      //                       MaterialButton(
-      //                         onPressed: () {
-      //                           Navigator.pop(context);
-      //                         },
-      //                         child: const Text('Close'),
-      //                         color: Colors.red,
-      //                       )
-      //                     ],
-      //                     elevation: 10,
-      //                     title: const Text('جدول القسم'),
-      //                     content: Column(
-      //                       mainAxisSize: MainAxisSize.min,
-      //                       children: [
-      //                         SizedBox(
-      //                           height: 50,
-      //                           width: kWidth * .8,
-      //                           child: ListView.builder(
-      //                               itemCount: teacherNameArabic.length,
-      //                               scrollDirection: Axis.horizontal,
-      //                               itemBuilder: (context, index) {
-      //                                 return Padding(
-      //                                   padding: const EdgeInsets.all(8.0),
-      //                                   child: Center(
-      //                                     child: MaterialButton(
-      //                                       onPressed: () {
-      //                                         setStat(() {
-      //                                           currentMainTableTeacher =
-      //                                               teacherNameArabic[index]
-      //                                                       ['english']
-      //                                                   .toString();
-      //                                         });
-      //                                       },
-      //                                       color: currentMainTableTeacher ==
-      //                                               teacherNameArabic[index]
-      //                                                   ['english']
-      //                                           ? Colors.yellow
-      //                                           : Colors.teal,
-      //                                       height: 30,
-      //                                       minWidth: 100,
-      //                                       child: Text(
-      //                                         teacherNameArabic[index]['arabic']
-      //                                             .toString(),
-      //                                         style: GoogleFonts.cairo(),
-      //                                       ),
-      //                                     ),
-      //                                   ),
-      //                                 );
-      //                               }),
-      //                         ),
-      //                         Flexible(
-      //                           child: Container(
-      //                             width: 1000,
-      //                             decoration: BoxDecoration(
-      //                               borderRadius: BorderRadius.circular(10),
-      //                               color: Colors.teal,
-      //                             ),
-      //                             child: ListView(
-      //                               scrollDirection: Axis.vertical,
-      //                               shrinkWrap: true,
-      //                               //mainAxisSize: MainAxisSize.min,
-      //                               children: [
-      //                                 tableContainer(sundayTable, kWidth,
-      //                                     currentMainTableTeacher),
-      //                                 tableContainer(mondayTable, kWidth,
-      //                                     currentMainTableTeacher),
-      //                                 tableContainer(tuesdayTable, kWidth,
-      //                                     currentMainTableTeacher),
-      //                                 tableContainer(wednesdayTable, kWidth,
-      //                                     currentMainTableTeacher),
-      //                                 tableContainer(thursdayTable, kWidth,
-      //                                     currentMainTableTeacher),
-      //                               ],
-      //                             ),
-      //                           ),
-      //                         ),
-      //                       ],
-      //                     ),
-      //                   );
-      //                 });
-      //               });
-      //         },
-      //         icon: const Icon(Icons.list_alt_outlined)),
-      //     // IconButton(
-      //     //   onPressed: () {
-      //     //     // _timer.cancel();
-      //     //     //S
-      //     //     //  AudioPlayer().setAsset(alarmAudioPath);
-      //     //     // playeres.setAsset('assets/ring.wav');
-      //     //     // playeres.dispose();
-      //     //     // int x = daysBetween(DateTime.now(), '2022-03-27 24:30:00.000');
-      //     //     // log(x.toString());
-      //     //     // showDialog(
-      //     //     //     context: context,
-      //     //     //     builder: (context) {
-      //     //     //       return AlertDialog(
-      //     //     //         title: Text(x.toString()),
-      //     //     //         content: Text(DateTime.now().toString()),
-      //     //     //       );
-      //     //     //     });
-      //     //   },
-      //     //   icon: const FaIcon(FontAwesomeIcons.sun),
-      //     // ),
-      //     const SizedBox(
-      //       width: 20,
-      //     ),
-      //     IconButton(
-      //       onPressed: () {
-      //         showTimePicker(
-      //           context: context,
-      //           initialTime: selectedTime,
-      //           initialEntryMode: TimePickerEntryMode.dial,
-      //         ).then((value) {
-      //           if (value != null && value != selectedTime) {
-      //             setState(() {
-      //               selectedTime = value;
-      //             });
-      //           }
-      //         });
-      //       },
-      //       icon: const FaIcon(FontAwesomeIcons.clock),
-      //     ),
-      //     const SizedBox(
-      //       width: 20,
-      //     ),
-      //   ],
-      //   title: Text(widget.title),
-      // ),
+
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return [
@@ -528,6 +369,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       icon: const Icon(Icons.list_alt_outlined,color: Colors.teal,)),
                 ),
+
               ],
               floating: true,
               forceElevated: innerBoxIsScrolled,
@@ -677,7 +519,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     shrinkWrap: true,
                     itemCount: dailyTable.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: kWidth > 1000 ? 8 : kWidth <400 ? 2 : 4,
+                      crossAxisCount: kWidth > 1000 ? dailyTable.length : kWidth <700 ? 2 : 5,
                       crossAxisSpacing: 5,
                       childAspectRatio: kWidth > 1000 ? 0.9 : 1.5,
                     ),
