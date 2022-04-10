@@ -2,14 +2,17 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
-// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:new_alarm/component/component.dart';
 import 'package:new_alarm/modal.dart';
+import 'package:new_alarm/shared/shared_helper.dart';
 
 
-void main() {
+void main() async{
+  await SharedHelper.init();
+  department=SharedHelper.getData(key: 'dep')??"School Alarm";
   runApp(Phoenix(child: const MyApp()));
 }
 
@@ -42,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // late final TabController _tabController;
 
-  final playeres = AudioPlayer();
+  final players = AudioPlayer();
   late Timer _timer;
   String currentTime = "00:00:00";
   bool isDone=false;
@@ -61,6 +64,8 @@ class _MyHomePageState extends State<MyHomePage> {
   String currentClass = "no data";
   String currentImage = "noclass.png";
   String teacherN = "khalid";
+
+
 
   //use to define color of class yellow or red or white
   int currentIndex = 0;
@@ -108,13 +113,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     // TODO: implement initState
+
     _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       setState(() {
         classCountDown();
         startNewDay();
         dayEnd();
         currentTime = DateFormat('HH:mm:ss').format(DateTime.now());
-        // currentDay=DateFormat('EEEE').format(DateTime.now());
         if (currentDay != DateFormat('EEEE').format(DateTime.now())) {
           currentDay = DateFormat('EEEE').format(DateTime.now());
           dailyTable =
@@ -250,7 +255,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SliverAppBar(
               backgroundColor: Colors.teal,
               elevation: 20,
-              title:const Text('School Alarm'),
+              title: Text(department),
               actions: [
                 Card(
                   child: IconButton(

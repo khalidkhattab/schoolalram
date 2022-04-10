@@ -42,13 +42,16 @@ dependencies:
   #analog_clock: ^0.0.1
   #flutter_analog_clock: ^0.1.1
   just_audio: any # substitute version number
-  just_audio_libwinmedia: ^0.0.4
+  #just_audio_libwinmedia: ^0.0.4
   dependencies:
   just_audio_platform_interface: ^4.1.0
 
   auto_size_text: ^3.0.0
 
   flutter_phoenix: ^1.0.0
+
+  #shared_preferences
+  shared_preferences: ^2.0.13
 
 
 dev_dependencies:
