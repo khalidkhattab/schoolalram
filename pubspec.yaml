@@ -53,6 +53,15 @@ dependencies:
   #shared_preferences
   shared_preferences: ^2.0.13
 
+  #firebase
+  firebase_core:
+  firebase_auth:
+  bloc:
+  flutter_bloc:
+
+  cloud_firestore:
+
+
 
 dev_dependencies:
   flutter_test:
